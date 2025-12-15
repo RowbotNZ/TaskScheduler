@@ -9,14 +9,14 @@ public protocol ViewModel: Observable {
 }
 
 @MainActor
-public protocol TaskSchedulerViewModel: ViewModel {
-    init(viewModelTaskScheduler: ViewModelTaskScheduler)
-}
+public protocol TaskSchedulerViewModel: ViewModel {}
 
 @MainActor
 public extension TaskSchedulerViewModel {
-    public static func buildView() -> some View {
-        ViewModelView<Self>(viewModelHolder: ViewModelHolder<Self>(viewModel: Self.init(viewModelTaskScheduler:)))
+    public static func buildView(
+        viewModel: (_ viewModelTaskScheduler: ViewModelTaskScheduler) -> Self
+    ) -> some View {
+        ViewModelView<Self>(viewModelHolder: ViewModelHolder<Self>(viewModel: viewModel))
     }
 }
 

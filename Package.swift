@@ -15,8 +15,8 @@ let package = Package(
             targets: ["TaskScheduler"]
         ),
         .library(
-            name: "ViewModelTaskScheduler",
-            targets: ["ViewModelTaskScheduler"]
+            name: "LifetimeProxy",
+            targets: ["LifetimeProxy"]
         )
     ],
     targets: [
@@ -26,7 +26,7 @@ let package = Package(
             name: "TaskScheduler"
         ),
         .target(
-            name: "ViewModelTaskScheduler",
+            name: "LifetimeProxy",
             dependencies: ["TaskScheduler"]
         ),
         .testTarget(
@@ -34,8 +34,8 @@ let package = Package(
             dependencies: ["TaskScheduler"]
         ),
         .testTarget(
-            name: "ViewModelTaskSchedulerTests",
-            dependencies: ["ViewModelTaskScheduler"]
+            name: "LifetimeProxyTests",
+            dependencies: ["LifetimeProxy"]
         )
     ]
 )

@@ -1,4 +1,3 @@
-import Combine
 import Foundation
 
 /// Can be used as a way of scheduling asynchronous work that is executed within a provided Structured Concurrency scope, referred to as the run context. No scheduled run context work will be executed until `run()` is called to establish a Structured Concurrency scope. If the run context scope is cancelled then all child Tasks will be cancelled along with it. Note that scheduled Tasks can run concurrently.
@@ -102,7 +101,7 @@ public final class TaskScheduler: Sendable {
     }
 
     /// Adds a unit of asynchronous work to the run context, if it is active, otherwise adds it to a queue to be scheduled when the run context is established.
-    public func addRunContextTask(_ task: @escaping @Sendable () async -> Void) {
+    public func runContextTask(_ task: @escaping @Sendable () async -> Void) {
         queuedRunContextTasks.append(task)
 
         if let runContextStreamContinuation {

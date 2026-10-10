@@ -21,8 +21,8 @@ import TaskScheduler
 /// Once the last reference to the `LifetimeProxy` instance is released, then the run context for the `TaskScheduler` will be cancelled, and this cancellation will propagate to any in-progress run context tasks.
 @MainActor
 @Observable
-final class LifetimeProxy<Subject: AnyObject & Observable & Sendable> {
-    nonisolated let subject: Subject
+public final class LifetimeProxy<Subject: AnyObject & Observable & Sendable> {
+    public nonisolated let subject: Subject
 
     @ObservationIgnored
     fileprivate let taskScheduler: TaskScheduler
@@ -30,7 +30,7 @@ final class LifetimeProxy<Subject: AnyObject & Observable & Sendable> {
     @ObservationIgnored
     private let lifetimeTask: Task<Void, Never>
 
-    init(
+    public init(
         lifetimeTaskPriority: TaskPriority? = .userInitiated,
         subject: (_ taskScheduler: RunContextTaskSchedulerProtocol) -> Subject
     ) {
